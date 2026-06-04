@@ -1,7 +1,9 @@
 module.exports = {
   register({ strapi }) {
     strapi.cron.add({
-      "* * * * *": async () => {
+      "*/30 * * * * *": async () => {
+        // "* * * * *": async () => {
+        // "/10 * * * *": async () => {
         await strapi
           .service("api::artist.artist")
           .syncTopArtists();

@@ -4,7 +4,7 @@ module.exports = {
             await strapi.service("api::artist.artist").syncTopArtists();
         },
         options: {
-            rule: "* * * * *",
+            rule: "/10 * * * *",
         },
     },
 };

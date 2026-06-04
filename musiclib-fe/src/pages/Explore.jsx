@@ -15,6 +15,7 @@ import SearchIcon from "../assets/search.webp"
 import ArtistDetails from "./ArtistDetails";
 import { fetchFavoriteAlbums } from "../redux/thunks/favoriteAlbum";
 import { useAuth } from "../hooks/useAuth";
+import LogoLoading from "../components/UI/animations/LogoLoading";
 
 function Explore() {
     const location = useLocation();
@@ -75,12 +76,11 @@ function Explore() {
             <SearchBar />
 
             <div className="p-4">
-                {loading && <p>Loading...</p>}
+                {loading && <div className="flex items-center justify-center w-full mt-4"><LogoLoading /></div>}
+                {/* {loading && <p>Loading...</p>} */}
 
-                {results && !loading && (
+                {results && Object.keys(results).length > 0 && !loading && results?.query !== "" && (
                     <div className="flex flex-col gap-10">
-
-
                         <CardGrid
                             cardSize="small"
                             title="Albums"

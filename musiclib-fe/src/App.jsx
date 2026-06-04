@@ -5,8 +5,8 @@ import {
 } from 'react-router-dom'
 
 import './App.css'
+import InitApp from './components/InitApp'
 
-// Lazy-loaded pages/components
 const Layout = lazy(() => import('./components/Layout'))
 const Home = lazy(() => import('./pages/Home'))
 const Explore = lazy(() => import('./pages/Explore'))
@@ -15,7 +15,7 @@ const ArtistDetails = lazy(() => import('./pages/ArtistDetails'))
 const AlbumDetails = lazy(() => import('./pages/AlbumDetails'))
 const Favorites = lazy(() => import('./pages/Favorites'))
 
-const router = createBrowserRouter([
+export const router = createBrowserRouter([
   {
     path: '/',
     element: <Layout />,
@@ -46,14 +46,8 @@ const router = createBrowserRouter([
       },
     ],
   },
-])
+]) 
 
-function App() {
-  return (
-    <Suspense >
-      <RouterProvider router={router} />
-    </Suspense>
-  )
+export default function App() {
+  return <InitApp />
 }
-
-export default App

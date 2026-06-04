@@ -31,9 +31,10 @@ export const fetchArtists = (pageN, pageSizeN) => async (dispatch) => {
             playcount: item.playcount,
             name: item.name,
             image: item.imageLarge,
-            // ...item.attributes,
+            ...item.attributes,
         }));
 
+        console.log(data[0])
         dispatch(setArtists(data));
 
     } catch (err) {

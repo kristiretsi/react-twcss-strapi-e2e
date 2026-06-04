@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { searchMusic } from "../../../redux/thunks/searchThunk";
+import { setSearchResults } from "../../../redux/slices/searchSlice";
 
 function SearchBar({ placeholder = "Search artists, songs, albums..." }) {
     const [value, setValue] = useState("");
@@ -8,8 +9,10 @@ function SearchBar({ placeholder = "Search artists, songs, albums..." }) {
 
     useEffect(() => {
         const t = setTimeout(() => {
-            if (value.trim().length >= 2) {
+            if (value.trim().length >= 1) {
                 dispatch(searchMusic(value, 1)); // reset to page 1
+            } else if (value.trim() === "") {
+                dispatch(setSearchResults(null));
             }
         }, 400);
 
@@ -17,7 +20,7 @@ function SearchBar({ placeholder = "Search artists, songs, albums..." }) {
     }, [value, dispatch]);
 
     const triggerSearch = (val) => {
-        if (!val || val.trim() == "") return;
+        //if (!val || val.trim() == "") return;
 
         dispatch(searchMusic(val));
     };
@@ -34,6 +37,7 @@ function SearchBar({ placeholder = "Search artists, songs, albums..." }) {
 
     const handleKeyDown = (e) => {
         if (e.key === "Enter") {
+            if (!value || value.trim() == "") return;
             triggerSearch(value);
         }
     };

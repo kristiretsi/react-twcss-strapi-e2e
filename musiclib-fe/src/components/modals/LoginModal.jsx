@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 
 import { closeLoginModal } from "../../redux/slices/modalSlice";
 import { useAuth } from "../../hooks/useAuth";
+import LogoLoading from "../UI/animations/LogoLoading";
 
 const LoginModal = () => {
     const dispatch = useDispatch();
@@ -75,13 +76,18 @@ const LoginModal = () => {
                         </div>
                     )}
 
-                    <button
-                        type="submit"
-                        disabled={loading}
-                        className="rounded-lg accent-grad py-3 font-bold text-white"
-                    >
-                        {loading ? "Loading..." : "Login"}
-                    </button>
+                    {loading ? (
+                        <div className="flex items-center justify-center w-full mt-4"><LogoLoading /></div>
+                    ) : (
+                        <button
+                            type="submit"
+                            disabled={loading}
+                            className="rounded-lg accent-grad py-3 font-bold text-white text-sm"
+                        >
+                            {/* {loading ? "Loading..." : "Login"}  */}
+                            Login
+                        </button>
+                    )}
                 </form>
             </div>
         </div>

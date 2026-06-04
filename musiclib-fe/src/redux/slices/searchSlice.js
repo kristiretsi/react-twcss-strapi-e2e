@@ -3,16 +3,17 @@ import { createSlice } from "@reduxjs/toolkit";
 const searchSlice = createSlice({
     name: "search",
     initialState: {
-        results: {
-            artists: [],
-            albums: [],
-            tracks: [],
-            pages: {
-                artists: 1,
-                albums: 1,
-                tracks: 1,
-            }
-        },
+        // results: {
+        //     artists: [],
+        //     albums: [],
+        //     tracks: [],
+        //     pages: {
+        //         artists: 1,
+        //         albums: 1,
+        //         tracks: 1,
+        //     }
+        // },
+        results: null,
         loading: false,
         error: null,
         query: "",

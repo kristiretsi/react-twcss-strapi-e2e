@@ -14,20 +14,20 @@ const Layout = () => {
         (state) => state.modal.loginOpen
     );
 
-    useEffect(() => {
-        const lsTheme = localStorage.getItem("theme");
-        const root = document.documentElement;
+    // useEffect(() => {
+    //     const lsTheme = localStorage.getItem("theme");
+    //     const root = document.documentElement;
 
-        if (lsTheme == 'dark') {
-            root.classList.add("dark");
-            localStorage.setItem("theme", 'dark');
-            document.documentElement.style.colorScheme = "dark";
-        } else {
-            root.classList.remove("dark");
-            localStorage.setItem("theme", 'light');
-            document.documentElement.style.colorScheme = "light";
-        }
-    }, []);
+    //     if (lsTheme == 'dark') {
+    //         root.classList.add("dark");
+    //         localStorage.setItem("theme", 'dark');
+    //         document.documentElement.style.colorScheme = "dark";
+    //     } else {
+    //         root.classList.remove("dark");
+    //         localStorage.setItem("theme", 'light');
+    //         document.documentElement.style.colorScheme = "light";
+    //     }
+    // }, []);
 
     return (
         <div className="h-full w-full bg-grad min-h-screen flex flex-col">

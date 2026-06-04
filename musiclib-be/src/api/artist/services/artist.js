@@ -9,14 +9,9 @@ module.exports = createCoreService('api::artist.artist', ({ strapi }) => ({
 
         try {
 
-            //console.log("🚀 LASTFM SYNC START");
-
             const apiKey = process.env.LASTFM_API_KEY;
             const page = 1;
             const limit = 200;
-
-            // console.log("METHOD SENT:", "chart.gettopartists");
-            //console.log("API KEY EXISTS:", !!apiKey);
 
             if (!apiKey) {
                 throw new Error("Missing LASTFM_API_KEY");
@@ -30,23 +25,27 @@ module.exports = createCoreService('api::artist.artist', ({ strapi }) => ({
                 page: String(page),
             };
 
-            //console.log(params);
+            const baseUrl = "https://ws.audioscrobbler.com/2.0/";
 
-            const res = await axios.get("https://ws.audioscrobbler.com/2.0/", {
+            const res = await axios.get(baseUrl, {
                 params,
             });
 
             const artists = res.data?.artists?.artist || [];
-            // console.log(artists);
 
             let created = 0;
             let updated = 0;
 
             for (const a of artists) {
 
+                const albumImage = await getTopAlbumImage(baseUrl, apiKey, a.name);
+
+                const fallbackSmall = a.image?.[0]?.["#text"] || null;
+                const fallbackMedium = a.image?.[1]?.["#text"] || null;
+                const fallbackLarge = a.image?.[2]?.["#text"] || null;
+
                 const artistData = {
                     name: a.name,
-                    // externalId: a.mbid || a.url,
                     externalId: a.mbid ? `mbid:${a.mbid}` : `name:${a.name}`,
                     source: "lastfm",
 
@@ -55,9 +54,13 @@ module.exports = createCoreService('api::artist.artist', ({ strapi }) => ({
 
                     url: a.url,
 
-                    imageSmall: a.image?.[0]?.["#text"] || null,
-                    imageMedium: a.image?.[1]?.["#text"] || null,
-                    imageLarge: a.image?.[2]?.["#text"] || null,
+                    // imageSmall: albumImage || fallbackSmall,
+                    // imageMedium: albumImage || fallbackMedium,
+                    // imageLarge: albumImage || fallbackLarge,
+                    image: albumImage,
+                    imageSmall: albumImage,
+                    imageMedium: albumImage,
+                    imageLarge: albumImage,
 
                     raw: a,
                 };
@@ -71,17 +74,13 @@ module.exports = createCoreService('api::artist.artist', ({ strapi }) => ({
                     });
 
                 if (existing) {
-
                     await strapi.db
                         .query("api::artist.artist")
                         .update({
                             where: { id: existing.id },
                             data: artistData,
                         });
-
                     updated++;
-
-                    // console.log("♻️ Updated:", artistData.name);
 
                 } else {
 
@@ -92,8 +91,6 @@ module.exports = createCoreService('api::artist.artist', ({ strapi }) => ({
                         });
 
                     created++;
-
-                    // console.log("✅ Created:", artistData.name);
                 }
             }
 
@@ -121,3 +118,34 @@ module.exports = createCoreService('api::artist.artist', ({ strapi }) => ({
     },
 
 }));
+
+async function getTopAlbumImage(baseUrl, apiKey, artistName) {
+    try {
+        const res = await axios.get(baseUrl, {
+            params: {
+                method: "artist.gettopalbums",
+                artist: artistName,
+                api_key: apiKey,
+                format: "json",
+                limit: 1,
+                autocorrect: 1,
+            },
+        });
+
+        const album = res.data?.topalbums?.album?.[0];
+        if (!album) return null;
+
+        const images = album.image || [];
+
+
+        const lastImage = [...images]
+            .reverse()
+            .find(i => i["#text"]);
+
+
+        return lastImage?.["#text"] || null;
+
+    } catch (e) {
+        return null;
+    }
+}

@@ -34,6 +34,7 @@ export const searchMusic =
                 );
             } catch (err) {
                 dispatch(setSearchError(err.message));
+                dispatch(setSearchResults(null));
             } finally {
                 dispatch(setSearchLoading(false));
             }

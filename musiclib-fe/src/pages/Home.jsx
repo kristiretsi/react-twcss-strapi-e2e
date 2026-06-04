@@ -12,34 +12,34 @@ import ContentSwiper from "../components/ContentSwiper";
 import MainCard from "../components/MainCard";
 import { fetchArtists } from "../redux/thunks/artistThunk";
 import { useDispatch, useSelector } from "react-redux";
-import FloatingParticles  from "../components/UI/animations/FloatingParticles";
+import FloatingParticles from "../components/UI/animations/FloatingParticles";
 
-const topSongs = [
-    {
-        id: 1,
-        title: "Blinding Lights",
-        artist: "The",
-        note: 'Weeknd',
-        image:
-            "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f",
-    },
-    {
-        id: 2,
-        title: "Starboy",
-        artist: "The",
-        note: 'Weeknd',
-        image:
-            "https://images.unsplash.com/photo-1511379938547-c1f69419868d",
-    },
-    {
-        id: 3,
-        title: "After Hours",
-        artist: "The",
-        note: 'Weeknd',
-        image:
-            "https://images.unsplash.com/photo-1501612780327-45045538702b",
-    },
-];
+// const topSongs = [
+//     {
+//         id: 1,
+//         title: "Blinding Lights",
+//         artist: "The",
+//         note: 'Weeknd',
+//         image:
+//             "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f",
+//     },
+//     {
+//         id: 2,
+//         title: "Starboy",
+//         artist: "The",
+//         note: 'Weeknd',
+//         image:
+//             "https://images.unsplash.com/photo-1511379938547-c1f69419868d",
+//     },
+//     {
+//         id: 3,
+//         title: "After Hours",
+//         artist: "The",
+//         note: 'Weeknd',
+//         image:
+//             "https://images.unsplash.com/photo-1501612780327-45045538702b",
+//     },
+// ];
 
 function Home() {
     const prevRef = useRef(null);
@@ -103,7 +103,7 @@ function Home() {
             {/* <FloatingParticles /> */}
 
             <ContentSwiper title="Top 200 Artists" viewAll={'/explore/top-artists'}>
-                {artists.map((artist) => (
+                {artists.length > 0 && artists.map((artist) => (
                     <MainCard
                         key={artist.id}
                         title={artist.name}

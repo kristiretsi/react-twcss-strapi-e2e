@@ -18,9 +18,14 @@ const Navbar = () => {
     const menu = useSelector((state) => state.navbar.menu);
     const logo = useSelector((state) => state.navbar.logo);
 
+    // useEffect(() => {
+    //     dispatch(fetchNavbarThunk());
+    // }, [dispatch]);
     useEffect(() => {
-        dispatch(fetchNavbarThunk());
-    }, [dispatch]);
+        if (!menu || menu.length === 0) {
+            dispatch(fetchNavbarThunk())
+        }
+    }, [menu, dispatch])
 
     return (
         <nav className="flex w-full items-center justify-between px-4 py-3">
@@ -39,7 +44,7 @@ const Navbar = () => {
             </div>
 
             <div className="font-bold flex items-center gap-6 text-on-bg text-sm">
-                {menu.length && menu.map((r) => {
+                {menu?.length > 0 && menu.map((r) => {
                     if (r?.needsauth == true && !isAuthenticated) return;
 
                     return (
