@@ -4,8 +4,8 @@ const SyncButton = () => {
     const handleSync = async () => {
         try {
             const response = await axios.post(
-                // "http://localhost:1337/api/songs/sync",
-                "http://localhost:1337/api/artists/sync"
+                // "http://localhost:1337/api/artists/sync",
+                `${import.meta.env.VITE_API_URL}/artists/sync`
             );
 
             console.log(response.data);
@@ -23,7 +23,7 @@ const SyncButton = () => {
             onClick={handleSync}
             className="bg-green-500 text-white px-4 py-2 rounded"
         >
-            Sync 
+            Sync
         </button>
     );
 };

@@ -14,10 +14,12 @@ import TrackIcon from "../assets/track.png"
 import SearchIcon from "../assets/search.webp"
 import ArtistDetails from "./ArtistDetails";
 import { fetchFavoriteAlbums } from "../redux/thunks/favoriteAlbum";
+import { useAuth } from "../hooks/useAuth";
 
 function Explore() {
     const location = useLocation();
     const dispatch = useDispatch();
+    const { isAuthenticated } = useAuth();
 
     const results = useSelector((state) => state.search.results);
     const loading = useSelector((state) => state.search.loading);
@@ -58,8 +60,9 @@ function Explore() {
     };
 
     useEffect(() => {
+        if (!isAuthenticated) return;
         dispatch(fetchFavoriteAlbums());
-    }, [dispatch]);
+    }, [dispatch, isAuthenticated]);
 
     useEffect(() => {
         return () => {

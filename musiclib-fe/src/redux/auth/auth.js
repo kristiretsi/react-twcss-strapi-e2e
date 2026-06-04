@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const API = "http://localhost:1337/api";
+// const API = "http://localhost:1337/api";
+const API = import.meta.env.VITE_API_URL;
 
 function setSession(jwt, user) {
     localStorage.setItem("token", jwt);

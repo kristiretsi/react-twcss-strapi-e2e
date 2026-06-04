@@ -11,7 +11,9 @@ export const fetchArtists = (pageN, pageSizeN) => async (dispatch) => {
 
         dispatch(setLoading(true));
 
-        const res = await axios.get("http://localhost:1337/api/artists", {
+        const res = await axios.get(
+            // "http://localhost:1337/api/artists", {
+            `${import.meta.env.VITE_API_URL}/artists`, {
             params: {
                 pagination: {
                     page: pageN,

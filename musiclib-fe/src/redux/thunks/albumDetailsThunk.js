@@ -16,7 +16,8 @@ export const fetchAlbumDetails =
                 dispatch(setAlbumLoading(true));
 
                 const res = await axios.get(
-                    "http://localhost:1337/api/albumdetails",
+                    // 'http://localhost:1337/api/albumdetails',
+                    `${import.meta.env.VITE_API_URL}/albumdetails`,
                     {
                         params: {
                             artist,

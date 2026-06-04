@@ -2,48 +2,6 @@ import axios from "axios";
 import { addFavoriteLocally, removeFavoriteLocally, setFavorites, setFavoritesError, setFavoritesLoading } from "../slices/favoritesSlice";
 import { toast } from "react-toastify";
 
-
-// export const toggleFavoriteAlbum =
-//     (album, isFav) => async (dispatch, getState) => {
-//         try {
-//             const token = getState().auth.token;
-
-//             if (isFav) {
-//                 await axios.delete(
-//                     `http://localhost:1337/api/favorite-albums/${album.id}`,
-//                     {
-//                         headers: {
-//                             Authorization: `Bearer ${token}`,
-//                         },
-//                     }
-//                 );
-
-//                 dispatch(removeFavoriteLocally(album.id));
-//             } else {
-//                 const res = await axios.post(
-//                     "http://localhost:1337/api/favorite-albums",
-//                     {
-//                         exId: album.id,
-//                         name: album.name,
-//                         artist: album.artist,
-//                         image:
-//                             album.image?.[0]?.["#text"],
-//                     },
-//                     {
-//                         headers: {
-//                             Authorization: `Bearer ${token}`,
-//                         },
-//                     }
-//                 );
-
-//                 dispatch(addFavoriteLocally(res.data));
-//             }
-//         } catch (err) {
-//             console.log(err);
-//         }
-//     };
-
-
 export const toggleFavoriteAlbum =
     (album, isFav) => async (dispatch, getState) => {
         try {
@@ -51,7 +9,8 @@ export const toggleFavoriteAlbum =
 
             if (isFav) {
                 await axios.delete(
-                    `http://localhost:1337/api/favorite-albums/${album.id}`,
+                    // `http://localhost:1337/api/favorite-albums/${album.id}`,
+                    `${import.meta.env.VITE_API_URL}/favorite-albums/${album.id}`,
                     {
                         headers: {
                             Authorization: `Bearer ${token}`,
@@ -64,7 +23,8 @@ export const toggleFavoriteAlbum =
                 toast.success("Removed from favorites.");
             } else {
                 const res = await axios.post(
-                    "http://localhost:1337/api/favorite-albums",
+                    // "http://localhost:1337/api/favorite-albums",
+                    `${import.meta.env.VITE_API_URL}/favorite-albums`,
                     {
                         exId: album.id,
                         name: album.name,
@@ -92,30 +52,6 @@ export const toggleFavoriteAlbum =
         }
     };
 
-// export const fetchFavoriteAlbums =
-//     () => async (dispatch, getState) => {
-//         try {
-//             dispatch(setFavoritesLoading(true));
-
-//             const token = getState().auth.token;
-
-//             const res = await axios.get(
-//                 "http://localhost:1337/api/favorite-albums",
-//                 {
-//                     headers: {
-//                         Authorization: `Bearer ${token}`,
-//                     },
-//                 }
-//             );
-
-//             dispatch(setFavorites(res.data));
-//         } catch (err) {
-//             dispatch(setFavoritesError(err.message));
-//         } finally {
-//             dispatch(setFavoritesLoading(false));
-//         }
-//     };
-
 export const fetchFavoriteAlbums =
     () => async (dispatch, getState) => {
         try {
@@ -124,7 +60,8 @@ export const fetchFavoriteAlbums =
             const token = getState().auth.token;
 
             const res = await axios.get(
-                "http://localhost:1337/api/favorite-albums",
+                // "http://localhost:1337/api/favorite-albums",
+                `${import.meta.env.VITE_API_URL}/favorite-albums`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`,

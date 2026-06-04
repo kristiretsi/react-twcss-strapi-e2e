@@ -28,7 +28,8 @@ const Navbar = () => {
                 {logo ? (
                     <img
                         onClick={() => navigate('/')}
-                        src={`http://localhost:1337${logo.url}`}
+                        src={`${logo.url}`}
+                        // src={`http://localhost:1337${logo.url}`}
                         alt="logo"
                         className="cursor-pointer"
                     />

@@ -11,7 +11,9 @@ export const searchMusic =
             try {
                 dispatch(setSearchLoading(true));
 
-                const res = await axios.get("http://localhost:1337/api/search", {
+                const res = await axios.get(
+                    // "http://localhost:1337/api/search", {
+                    `${import.meta.env.VITE_API_URL}/search`, {
                     params: {
                         q: query,
                         artistPage: pages.artists,
