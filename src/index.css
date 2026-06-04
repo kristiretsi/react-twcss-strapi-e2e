@@ -1,0 +1,99 @@
+@import "tailwindcss";   
+
+
+
+@layer utilities {
+  .bg-grad {
+    @apply bg-linear-to-br from-zinc-50 via-slate-50 to-rose-50;
+  }
+
+  .dark .bg-grad {
+    @apply from-zinc-950 via-slate-900 to-neutral-900;
+  }
+  .bg-hover {
+    @apply hover:bg-zinc-300/90;
+  } 
+  .dark .bg-hover {
+   @apply hover:bg-white/5
+  }
+}
+
+@layer components {
+  .accent-color {
+    @apply text-pink-500;
+  }
+
+  .accent-color-hov {
+    @apply text-rose-500;
+  }
+
+  .accent-grad {
+    @apply bg-linear-to-r from-pink-500 via-rose-500 to-fuchsia-500;
+  } 
+
+ .text-on-bg {
+  @apply text-gray-950  ;
+}
+
+  .modal-bg {
+    @apply bg-gray-200;
+  }
+
+  .dark .text-on-bg {
+    @apply text-white;
+  }
+  .dark .modal-bg{
+    @apply bg-gray-800;
+  }  
+} 
+
+@keyframes float-drift {
+  0% {
+    transform: translate(0px, 0px) rotate(0deg);
+  }
+  25% {
+    transform: translate(4px, -6px) rotate(1deg);
+  }
+  50% {
+    transform: translate(0px, -10px) rotate(0deg);
+  }
+  75% {
+    transform: translate(-4px, -6px) rotate(-1deg);
+  }
+  100% {
+    transform: translate(0px, 0px) rotate(0deg);
+  }
+}
+
+.float-drift {
+  animation: float-drift 3s ease-in-out infinite;
+  will-change: transform;
+}
+
+.curved-text {
+  display: inline-block;
+}
+
+.curved-text span {
+  display: inline-block;
+  transform: translateY(calc(sin(var(--i) * 0.25rad) * 6px));
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0px) translateX(0px);
+        opacity: 0.3;
+    }
+    50% {
+        transform: translateY(-30px) translateX(10px);
+        opacity: 0.7;
+    }
+    100% {
+        transform: translateY(0px) translateX(0px);
+        opacity: 0.3;
+    }
+}
+
+.animate-float {
+    animation: float 8s ease-in-out infinite;
+}

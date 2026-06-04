@@ -1,0 +1,39 @@
+{
+  "kind": "collectionType",
+  "collectionName": "favorite_albums",
+  "info": {
+    "singularName": "favorite-album",
+    "pluralName": "favorite-albums",
+    "displayName": "favorite-album"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "artist": {
+      "type": "string"
+    },
+    "users_permissions_user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "favorite_albums"
+    },
+    "image": {
+      "type": "string"
+    },
+    "playcount": {
+      "type": "string"
+    },
+    "listeners": {
+      "type": "string"
+    },
+    "exId": {
+      "type": "string"
+    }
+  }
+}

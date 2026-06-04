@@ -1,0 +1,20 @@
+{
+  "collectionName": "components_shared_navbar_links",
+  "info": {
+    "displayName": "navbar-links",
+    "icon": "code"
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "string"
+    },
+    "href": {
+      "type": "string"
+    },
+    "needsauth": {
+      "type": "boolean"
+    }
+  },
+  "config": {}
+}

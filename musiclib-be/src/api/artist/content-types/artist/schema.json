@@ -1,0 +1,44 @@
+{
+  "kind": "collectionType",
+  "collectionName": "artists",
+  "info": {
+    "singularName": "artist",
+    "pluralName": "artists",
+    "displayName": "artist"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "externalId": {
+      "type": "string"
+    },
+    "playcount": {
+      "type": "integer"
+    },
+    "listeners": {
+      "type": "integer"
+    },
+    "url": {
+      "type": "string"
+    },
+    "imageSmall": {
+      "type": "string"
+    },
+    "imageMedium": {
+      "type": "string"
+    },
+    "imageLarge": {
+      "type": "string"
+    },
+    "raw": {
+      "type": "json"
+    },
+    "source": {
+      "type": "string"
+    }
+  }
+}
