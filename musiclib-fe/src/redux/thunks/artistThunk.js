@@ -34,7 +34,6 @@ export const fetchArtists = (pageN, pageSizeN) => async (dispatch) => {
             ...item.attributes,
         }));
 
-        console.log(data[0])
         dispatch(setArtists(data));
 
     } catch (err) {

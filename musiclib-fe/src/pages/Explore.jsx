@@ -77,42 +77,46 @@ function Explore() {
 
             <div className="p-4">
                 {loading && <div className="flex items-center justify-center w-full mt-4"><LogoLoading /></div>}
-                {/* {loading && <p>Loading...</p>} */}
 
-                {results && Object.keys(results).length > 0 && !loading && results?.query !== "" && (
-                    <div className="flex flex-col gap-10">
-                        <CardGrid
-                            cardSize="small"
-                            title="Albums"
-                            cards={results.albums}
-                            page={pages.albums}
-                            setPage={(p) => changeAlbumPage(p)}
-                            maxPage={10}
-                            type={"album"}
-                        />
+                {
+                    results &&
+                    Object.keys(results).length > 0 &&
+                    // !loading &&
+                    results?.query !== "" &&
+                    (
+                        <div className="flex flex-col gap-10">
+                            <CardGrid
+                                cardSize="small"
+                                title="Albums"
+                                cards={results.albums}
+                                page={pages.albums}
+                                setPage={(p) => changeAlbumPage(p)}
+                                maxPage={10}
+                                type={"album"}
+                            />
 
-                        <CardGrid
-                            cardSize="small"
-                            title="Tracks"
-                            cards={results.tracks}
-                            page={pages.tracks}
-                            setPage={(p) => changeTrackPage(p)}
-                            maxPage={10}
-                            type={"track"}
-                        />
+                            <CardGrid
+                                cardSize="small"
+                                title="Tracks"
+                                cards={results.tracks}
+                                page={pages.tracks}
+                                setPage={(p) => changeTrackPage(p)}
+                                maxPage={10}
+                                type={"track"}
+                            />
 
-                        <CardGrid
-                            cardSize="small"
-                            title="Artists"
-                            cards={results.artists}
-                            page={pages.artists}
-                            setPage={(p) => changeArtistPage(p)}
-                            maxPage={10}
-                            image={TrackIcon}
-                            type={"artist"}
-                        />
-                    </div>
-                )}
+                            <CardGrid
+                                cardSize="small"
+                                title="Artists"
+                                cards={results.artists}
+                                page={pages.artists}
+                                setPage={(p) => changeArtistPage(p)}
+                                maxPage={10}
+                                image={TrackIcon}
+                                type={"artist"}
+                            />
+                        </div>
+                    )}
 
                 {!results && !loading && (
                     <div className="h-full w-full flex items-center justify-center flex-col mt-10">
