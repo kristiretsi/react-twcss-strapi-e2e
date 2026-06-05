@@ -43,10 +43,10 @@ const MainCard = ({
             return;
         }
 
-        if (type === "artist") {
-            navigate(`/explore/artist/${encodeURIComponent(id)}`);
-            return;
-        }
+        // if (type === "artist") {
+        //     navigate(`/explore/artist/${encodeURIComponent(id)}`);
+        //     return;
+        // }
 
         if (type === "album") {
             navigate(

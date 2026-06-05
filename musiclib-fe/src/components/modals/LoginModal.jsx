@@ -83,8 +83,7 @@ const LoginModal = () => {
                             type="submit"
                             disabled={loading}
                             className="rounded-lg accent-grad py-3 font-bold text-white text-sm"
-                        >
-                            {/* {loading ? "Loading..." : "Login"}  */}
+                        > 
                             Login
                         </button>
                     )}

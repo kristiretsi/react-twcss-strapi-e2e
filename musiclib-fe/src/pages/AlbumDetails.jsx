@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { fetchAlbumDetails } from "../redux/thunks/albumDetailsThunk";
+import LogoLoading from "../components/UI/animations/LogoLoading";
 
 const AlbumDetails = () => {
     const dispatch = useDispatch();
@@ -31,7 +32,8 @@ const AlbumDetails = () => {
         }
     }, [artist, album, dispatch]);
 
-    if (loading) return <div>Loading...</div>;
+    if (loading) return <div className="flex items-center justify-center w-full mt-4"><LogoLoading /></div>;
+    // if (loading) return <div>Loading...</div>;
 
     if (error) return <div>Error: {error}</div>;
 
@@ -52,7 +54,7 @@ const AlbumDetails = () => {
                 Back
             </button>
             <div className="p-6">
-                <div className="flex gap-6">
+                <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-start gap-6">
                     {cover && (
                         <img
                             src={cover}
@@ -61,7 +63,7 @@ const AlbumDetails = () => {
                         />
                     )}
 
-                    <div>
+                    <div className="text-center sm:text-left">
                         <h1 className="text-4xl font-bold">
                             {albumData.name}
                         </h1>
