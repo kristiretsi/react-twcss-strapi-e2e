@@ -9,6 +9,7 @@
   "options": {
     "draftAndPublish": true
   },
+  "pluginOptions": {},
   "attributes": {
     "name": {
       "type": "string"
@@ -17,10 +18,10 @@
       "type": "string"
     },
     "playcount": {
-      "type": "integer"
+      "type": "biginteger"
     },
     "listeners": {
-      "type": "integer"
+      "type": "biginteger"
     },
     "url": {
       "type": "string"

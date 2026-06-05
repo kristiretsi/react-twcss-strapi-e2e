@@ -487,7 +487,7 @@ export interface ApiArtistArtist extends Struct.CollectionTypeSchema {
     imageLarge: Schema.Attribute.String;
     imageMedium: Schema.Attribute.String;
     imageSmall: Schema.Attribute.String;
-    listeners: Schema.Attribute.Integer;
+    listeners: Schema.Attribute.BigInteger;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -495,7 +495,7 @@ export interface ApiArtistArtist extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     name: Schema.Attribute.String;
-    playcount: Schema.Attribute.Integer;
+    playcount: Schema.Attribute.BigInteger;
     publishedAt: Schema.Attribute.DateTime;
     raw: Schema.Attribute.JSON;
     source: Schema.Attribute.String;
