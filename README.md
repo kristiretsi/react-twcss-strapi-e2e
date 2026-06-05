@@ -19,7 +19,7 @@ MusicLib lets users browse artists, albums, tracks, and favorites through a mode
 Key features:
 - Artist, album, and track browsing
 - Search support via Strapi endpoints
-- Favorite albums management
+- Favorite albums management tied to authenticated users, both UI and backend respond accordingly
 - Content served from a Strapi backend with media support
 - Frontend built with React, React Router, Redux Toolkit, and Tailwind CSS
 
@@ -140,7 +140,7 @@ The backend configuration is defined in `musiclib-be/config/server.js`.
 
 1. Start the backend: `musiclib-be/npm run develop`
 2. Start the frontend: `musiclib-fe/npm run dev`
-3. Open the React app in your browser and confirm it connects to the Strapi API
+3. Open the React app in your browser and confirm it connects to the Strapi API 
 
 ---
 ## Notes
@@ -148,3 +148,10 @@ The backend configuration is defined in `musiclib-be/config/server.js`.
 - The frontend Axios client uses `import.meta.env.VITE_API_URL` in `musiclib-fe/src/api/axios-api.js`.
 - The backend server default port is configured in `musiclib-be/config/server.js` at `1337`.
 - If the project requires a custom Strapi `.env` file, add it in `musiclib-be/`.
+
+---
+### Improvements
+
+- Because of incomplete Last.fm metadata, Track and artist details pages don't exist. The current backend logic is the same as the album details flow, but Last.fm data availability is inconsistent.
+- Image loading can fail when Last.fm does not return valid artwork. This is a Last.fm data issue rather than a project malfunction.
+- Registration option.
