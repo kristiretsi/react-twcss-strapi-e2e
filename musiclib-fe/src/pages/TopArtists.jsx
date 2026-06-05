@@ -11,10 +11,12 @@ const TopArtists = () => {
     const navigate = useNavigate();
 
     const artists = useSelector((state) => state.artists.items);
+    const meta = useSelector((state) => state.artists.meta);
 
     const [page, setPage] = useState(1);
     const pageSize = 10;
-    const MAX_PAGE = 20;
+    const MAX_PAGE = meta?.total > 0 ? Math.ceil(meta?.total / pageSize) : 1;
+    console.log(meta?.total);
 
     useEffect(() => {
         if (page > MAX_PAGE) return;
@@ -23,8 +25,6 @@ const TopArtists = () => {
 
     return (
         <div className="p-4">
-
-            {/* Back Button */}
             <button
                 onClick={() => navigate(-1)}
                 className="mb-4 px-3 py-1 rounded-md text-sm accent-grad text-white"
@@ -35,7 +35,7 @@ const TopArtists = () => {
             <CardGrid
                 cardSize="small"
                 cards={artists}
-                title="Top 200 Artists"
+                title="Top Artists"
                 page={page}
                 setPage={setPage}
                 maxPage={MAX_PAGE}

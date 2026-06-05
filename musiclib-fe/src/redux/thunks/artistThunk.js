@@ -3,6 +3,7 @@ import {
     setArtists,
     setLoading,
     setError,
+    setArtistsMeta
 } from "../slices/artistSlice";
 
 export const fetchArtists = (pageN, pageSizeN) => async (dispatch) => {
@@ -35,6 +36,8 @@ export const fetchArtists = (pageN, pageSizeN) => async (dispatch) => {
         }));
 
         dispatch(setArtists(data));
+        console.log(res.data.meta.pagination);
+        dispatch(setArtistsMeta(res.data.meta.pagination));
 
     } catch (err) {
 

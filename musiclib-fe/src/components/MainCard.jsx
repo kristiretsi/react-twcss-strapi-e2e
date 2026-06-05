@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { toggleFavoriteAlbum } from "../redux/thunks/favoriteAlbum";
 import { useDispatch, useSelector } from "react-redux";
 import FavIcon from '../assets/svgs/fav.svg?react'
+import { useAuth } from "../hooks/useAuth";
 
 const MainCard = ({
     image,
@@ -18,6 +19,7 @@ const MainCard = ({
 }) => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const { isAuthenticated } = useAuth();
 
     const isSmall = cardSize === "small";
 
@@ -116,7 +118,8 @@ const MainCard = ({
                             );
                         }}
                     >
-                        {isFav ? <FavIcon className="h-5 w-5 fill-pink-600 stroke-none" /> : <FavIcon className="h-5 w-5 stroke-white" />}
+
+                        {isAuthenticated && (isFav ? <FavIcon className="h-5 w-5 fill-pink-600 stroke-none" /> : <FavIcon className="h-5 w-5 stroke-white" />)}
 
                     </div>
                 )}

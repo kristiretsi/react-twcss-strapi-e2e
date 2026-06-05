@@ -6,10 +6,14 @@ const artistSlice = createSlice({
         items: [],
         loading: false,
         error: null,
+        meta: null
     },
     reducers: {
         setArtists: (state, action) => {
             state.items = action.payload;
+        },
+        setArtistsMeta: (state, action) => {
+            state.meta = action.payload;
         },
         setLoading: (state, action) => {
             state.loading = action.payload;
@@ -20,5 +24,5 @@ const artistSlice = createSlice({
     },
 });
 
-export const { setArtists, setLoading, setError } = artistSlice.actions;
+export const { setArtists, setArtistsMeta, setLoading, setError } = artistSlice.actions;
 export default artistSlice.reducer;

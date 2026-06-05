@@ -102,7 +102,7 @@ function Home() {
 
             {/* <FloatingParticles /> */}
 
-            <ContentSwiper title="Top 200 Artists" viewAll={'/explore/top-artists'}>
+            <ContentSwiper title="Top Artists" viewAll={'/explore/top-artists'}>
                 {artists.length > 0 && artists.map((artist) => (
                     <MainCard
                         key={artist.id}
