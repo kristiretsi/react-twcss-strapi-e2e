@@ -110,6 +110,7 @@ function Home() {
                         image={artist.image}
                         description={`${artist.listeners} listeners`}
                         note={`${artist.playcount} plays`}
+                        type={"home"}
                     />
                 ))}
             </ContentSwiper>

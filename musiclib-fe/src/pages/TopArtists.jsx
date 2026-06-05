@@ -40,6 +40,7 @@ const TopArtists = () => {
                 setPage={setPage}
                 maxPage={MAX_PAGE}
                 pageSize={pageSize}
+                type={"home"} 
             />
         </div>
     );

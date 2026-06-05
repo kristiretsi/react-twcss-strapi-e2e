@@ -38,6 +38,11 @@ const MainCard = ({
     }, [favorites, title, art, mbid]);
 
     const handleClick = () => {
+         if (type === "home") {
+            navigate(`/explore`);
+            return;
+        }
+
         if (type === "artist") {
             navigate(`/explore/artist/${encodeURIComponent(id)}`);
             return;
