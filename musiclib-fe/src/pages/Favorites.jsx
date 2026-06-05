@@ -4,17 +4,26 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchFavoriteAlbums } from "../redux/thunks/favoriteAlbum";
 import CardGrid from "../components/CardGrid";
 import LogoLoading from "../components/UI/animations/LogoLoading";
+import { useAuth } from "../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 
 const Favorites = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const albums = useSelector((state) => state.favorites.albums);
     const loading = useSelector((state) => state.favorites.loading);
     const error = useSelector((state) => state.favorites.error);
 
+    const { isAuthenticated } = useAuth();
+
     useEffect(() => {
+        if (!isAuthenticated) {
+            navigate("/");
+            return;
+        };
         dispatch(fetchFavoriteAlbums());
-    }, [dispatch]);
+    }, [dispatch, isAuthenticated]);
 
     if (loading) return <div className="flex items-center justify-center w-full mt-4"><LogoLoading /></div>;
     // if (loading) return <div>Loading...</div>;
