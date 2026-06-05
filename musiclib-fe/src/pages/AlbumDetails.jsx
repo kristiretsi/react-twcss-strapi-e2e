@@ -1,12 +1,16 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { fetchAlbumDetails } from "../redux/thunks/albumDetailsThunk";
+import { toggleFavoriteAlbum } from "../redux/thunks/favoriteAlbum";
 import LogoLoading from "../components/UI/animations/LogoLoading";
+import FavIcon from "../assets/svgs/fav.svg?react";
+import { useAuth } from "../hooks/useAuth";
 
 const AlbumDetails = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const { isAuthenticated } = useAuth();
 
     const { artist, album } = useParams();
 
@@ -19,6 +23,13 @@ const AlbumDetails = () => {
     const error = useSelector(
         (state) => state.albumDetails.error
     );
+    const favorites = useSelector((state) => state.favorites.albums);
+
+    const isFav = useMemo(() => {
+        return favorites?.some((a) => {
+            return a.name === albumData?.name && a.artist === albumData?.artist;
+        });
+    }, [favorites, albumData?.name, albumData?.artist]);
 
     useEffect(() => {
         if (artist && album) {
@@ -83,8 +94,42 @@ const AlbumDetails = () => {
                                 {albumData.listeners} listeners
                             </p>
                         )}
+
+                        {isAuthenticated && (
+                            <div
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    dispatch(
+                                        toggleFavoriteAlbum(
+                                            {
+                                                name: albumData.name,
+                                                artist: albumData.artist,
+                                                image: albumData.image?.[albumData.image.length - 1]?.["#text"],
+                                                id: albumData.mbid
+                                            },
+                                            isFav
+                                        )
+                                    );
+                                }}
+                                className="mt-4 cursor-pointer flex items-center justify-center gap-2"
+                            >
+                                {isFav ? (
+                                    <FavIcon className="h-7 w-7 fill-pink-600 stroke-none" />
+                                ) : (
+                                    <FavIcon className="h-7 w-7 stroke-pink-600" />
+                                )}
+                                {isFav ? (
+                                    <p>Favorite</p>
+                                ) : (
+                                    <p>Add to Favorites</p>
+                                )}
+
+                            </div>
+                        )}
                     </div>
                 </div>
+
+                <div></div>
 
                 {albumData.wiki?.summary && (
                     <div

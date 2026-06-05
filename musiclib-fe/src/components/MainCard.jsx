@@ -124,7 +124,7 @@ const MainCard = ({
                         }}
                     >
 
-                        {isAuthenticated && (isFav ? <FavIcon className="h-5 w-5 fill-pink-600 stroke-none" /> : <FavIcon className="h-5 w-5 stroke-white" />)}
+                        {isAuthenticated && (isFav ? <FavIcon className="h-5 w-5 fill-pink-600 stroke-none" /> : <FavIcon className="h-5 w-5 stroke-pink-600" />)}
 
                     </div>
                 )}

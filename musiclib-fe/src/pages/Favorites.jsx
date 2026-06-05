@@ -34,13 +34,23 @@ const Favorites = () => {
             <h1 className="text-2xl font-bold mb-4">
                 Favorites
             </h1>
-
-            <CardGrid
-                cards={albums}
-                type="album"
-                cardSize="normal"
-                favs={true}
-            />
+            {albums.length === 0 ? (
+                <div className="flex flex-col items-center justify-center w-full mt-4">
+                    <div className="text-on-bg text-sm">You have no favorite albums yet.</div>
+                    <div className="mt-4 text-on-bg text-center text-sm">
+                        Go to the <span className="accent-color font-semibold text-lg cursor-pointer" onClick={() => navigate("/explore")}>
+                            Explore
+                        </span> page to add some!
+                    </div>
+                </div>
+            ) : (
+                <CardGrid
+                    cards={albums}
+                    type="album"
+                    cardSize="normal"
+                    favs={true}
+                />
+            )}
         </div>
     );
 };
