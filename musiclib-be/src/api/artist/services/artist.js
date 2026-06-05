@@ -46,7 +46,7 @@ module.exports = createCoreService('api::artist.artist', ({ strapi }) => ({
 
                 const artistData = {
                     name: a.name,
-                    externalId: a.mbid ? `mbid:${a.mbid}` : `name:${a.name}`,
+                    externalId: a.mbid ? `${a.mbid}` : `artist_${a.name}`,
                     source: "lastfm",
 
                     playcount: Number(a.playcount || 0),
